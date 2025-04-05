@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import os
 import csv
+import json
 
 #extracts hand landmarks from video via mediapipe
 mp_hands = mp.solutions.hands
@@ -18,12 +19,16 @@ if not os.path.exists(output_file):
         header=['label']+[f'{i}_{axis}' for i in range(21) for axis in ['x','y','z']]
         writer.writerow(header)
 
-#setup the gesture label mappings
-gesture_labels={
-    ord('p'):'peace_sign',
-    ord('f'):'fist',
-    ord('m'):'middle_finger'
-}
+# #setup the gesture label mappings
+# gesture_labels={
+#     ord('p'):'peace_sign',
+#     ord('f'):'fist',
+#     ord('m'):'middle_finger'
+# }
+
+#load the gesture_labels json file
+with open("gesture_labels.json","r") as f:
+    gesture_labels=json.load(f)
 
 #capture webcam video
 cap = cv2.VideoCapture(0)
@@ -49,10 +54,13 @@ while cap.isOpened():
 
             #press a key to record the current hand landmarks
             key=cv2.waitKey(10)
+            # print(f"here is the key you pressed: {key}")
             if key!=-1 and key!= ord('q'):
+                #convert from ascii to ordinal
+                chr_key=chr(key)
                 #check if key exists in gesture_labels
-                if key in gesture_labels:
-                    label=gesture_labels[key]
+                if chr_key in gesture_labels:
+                    label=gesture_labels[chr_key]
 
                     #initialize empty list for storing current landmark data
                     landmark_data=[]
