@@ -7,7 +7,7 @@ import numpy as np
 
 #initialize mediapipe pose
 mp_pose = mp.solutions.pose
-mp.drawing = mp.solutions.drawing_utils
+mp_draw = mp.solutions.drawing_utils
 
 #create pose object which contains the model,provide landmark smoothing
 pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.2)
@@ -48,7 +48,7 @@ while cap.isOpened():
 
     #draw skeleton on frame
     if results.pose_landmarks:
-        mp.drawing.draw_landmarks(frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+        mp_draw.draw_landmarks(frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
 
         #run land mark positions through the kalman filters
         for i, j in enumerate(results.pose_landmarks.landmark):
