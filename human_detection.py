@@ -14,7 +14,7 @@ pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_t
 
 #create Kalman filter function
 def kalman_filter():
-    #initialize (1st order or 2nd order)
+    #initialize 1st order or 2nd order
     kf=KalmanFilter(dim_x=4, dim_z=2)
     #state transition matrix
     kf.F = np.array([[1,0,1,0],[0,1,0,1],[0,0,1,0],[0,0,0,1]])
