@@ -17,6 +17,8 @@ class gesture_dataset(Dataset):
         #open my csv file as read only
         with open(csv_file, 'r') as f:
             reader = csv.reader(f)
+            #skip the headers
+            next(reader)
             #each row looks like: ['fist', 0.2, 0.4, ...]
             for row in reader:
                 label=row[0]
