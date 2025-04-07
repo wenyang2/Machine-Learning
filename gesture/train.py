@@ -8,7 +8,7 @@ from load_dataset import gesture_dataset
 #step 1: Hyperparameters
 batch_size = 32
 learning_rate = 0.001
-epochs = 100
+epochs = 200
 
 #step 2: split dataset and create dataloader
 dataset = gesture_dataset(csv_file='hand_landmarks.csv')
