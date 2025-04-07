@@ -93,4 +93,4 @@ for epoch in range(epochs):
     print(f"Epoch {epoch+1}/{epochs},train_Loss: {train_loss:.4f},train_Accuracy: {train_accuracy:.2f}%,test_loss: {test_loss:.4f},test_Accuracy: {test_accuracy:.2f}%")
 
 #step 11: save the model
-torch.save(model.state_dict(), 'D:\Desktop\Machine-Learning\gesture_mlp.pt')
+torch.save(model.state_dict(), 'D:\Desktop\Machine-Learning\gesture\gesture_mlp.pt')
