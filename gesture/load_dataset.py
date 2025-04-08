@@ -1,6 +1,7 @@
 import torch
 from torch.utils.data import Dataset
 import csv
+import json
 
 class gesture_dataset(Dataset):
     def __init__(self,csv_file):
@@ -34,6 +35,10 @@ class gesture_dataset(Dataset):
 
                 self.samples.append(features)
                 self.labels.append(self.label_map[label])
+            
+            #writing label map into json file
+            with open("gesture_label_map.json","w") as f:
+                json.dump(self.label_map,f,indent=4)
         
         #convert list to tensors 
         self.samples=torch.tensor(self.samples, dtype=torch.float32)
