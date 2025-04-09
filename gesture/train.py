@@ -24,7 +24,7 @@ test_loader = DataLoader(test_data, batch_size=batch_size, shuffle = False)
 #step 3: Initialize model, loss function, optimizer
 model = mlp_classifier(num_classes=len(dataset.label_map))
 loss_fn = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+optimizer = optim.Adam(model.parameters(), lr=learning_rate,weight_decay=0.001)
 
 #step 4: Training loop
 for epoch in range(epochs):
